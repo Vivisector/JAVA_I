@@ -3,9 +3,9 @@
  Реализуйте очередь с помощью LinkedList со следующими методами:enqueue() - помещает элемент в конец очереди, dequeue() - возвращает первый элемент из очереди и удаляет его, first() - возвращает первый элемент из очереди, не удаляя
  */
 package tasks;
-
 import java.util.LinkedList;
 import java.util.Arrays;
+
 public class Dz2queue {
     public LinkedList<Object> queue = new LinkedList<>();
 
@@ -34,7 +34,7 @@ public class Dz2queue {
         q.enqueue(arr); // Наполняем очередь элементами нашего массива
         System.out.println("Заполненная очередь:");
         // System.out.println("Исходный массив: " + Arrays.toString(q));
-        System.out.println(q + " - так и не понял, как вести читабельный список элементов очереди"); // пока 
+        System.out.println(q + " - так и не понял, как вывести читабельный список элементов очереди"); // пока не понял, как показать поэлементно
 
         System.out.println("Первый элемент очереди: " + q.first()); // Выводим первый элемент очереди (1)
         // q.dequeue(); // Удаляем первый элемент (1)
