@@ -1,32 +1,18 @@
 package PhoneBook.tasks;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PhoneBook {
+    private HashMap<String, List<String>> contacts;
 
-    private Map<String, List<String>> contacts = new HashMap<>();
-    // List<String - значения телефонных номерв (их может быть несколько)
-
-    public void addContact(String name, String phoneNumber) {
-        List<String> phoneNumbers = contacts.get(name);
-        if (phoneNumbers == null) {
-            phoneNumbers = new ArrayList<>();
-            contacts.put(name, phoneNumbers);
-        }
-        phoneNumbers.add(phoneNumber);
+    public PhoneBook() {
+        contacts = new HashMap<>();
     }
 
-    public void printAllContacts() {
-        for (String name : contacts.keySet()) {
-            List<String> numbers = contacts.get(name);
-            System.out.println(name + ": " + numbers);
+    public void add(String name, String phoneNumber) {
+        if (!contacts.containsKey(name)) {
+            contacts.put(name, new ArrayList<>());
         }
-    }
-    
-    public List<String> getPhoneNumbers(String name) {
-        return contacts.get(name);
+        contacts.get(name).add(phoneNumber);
     }
 
     public void removeContact(String name) {
@@ -34,11 +20,31 @@ public class PhoneBook {
     }
 
     public void removePhoneNumber(String name, String phoneNumber) {
-        List<String> phoneNumbers = contacts.get(name);
-        if (phoneNumbers != null) {
-            phoneNumbers.remove(phoneNumber);
-            if (phoneNumbers.isEmpty()) { // если телефонов у контакта не осталось, контак удаляется из книги
-                contacts.remove(name);
+        contacts.get(name).remove(phoneNumber);
+    }
+
+    public List<String> getPhoneNumbers(String name) {
+        System.out.print("У [" + name + "] такие номера: ");
+        return contacts.get(name);
+    }
+
+    public void printAllContacts() {
+        for (String name : contacts.keySet()) {
+            List<String> numbers = contacts.get(name);
+            System.out.println(name + ":: " + numbers);
+        }
+    }
+    public void prn(){
+        System.out.println(contacts.keySet());
+    }
+     // Вывод всех имён с повторами
+     public void printDuplicateNames() {
+        // Создает новую карту для хранения количества имен
+        Map<String, Integer> nameCounts = new HashMap<>();
+        for (String name : contacts.keySet()) {
+        List<String> numbers = contacts.get(name);
+            if (numbers.size() > 1) {
+            System.out.println(name + ": " + numbers);
             }
         }
     }
